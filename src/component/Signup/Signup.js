@@ -2,6 +2,7 @@ import React,{useState} from "react";
 import {Dialog,DialogContent,DialogTitle,Grid,TextField, Button} from "@material-ui/core";
 import {useDispatch} from "react-redux";
 import { SignupCandidate, SignupRecuiter } from "./Signup.slice";
+import { nanoid } from "@reduxjs/toolkit";
 
 const SignupModal = ({open,setOpen,id}) => {
     const [fname,setFname] = useState('');
@@ -43,7 +44,8 @@ const SignupModal = ({open,setOpen,id}) => {
             fname:fname,
             lname:lname,
             email:email,
-            password:password
+            password:password,
+            id : nanoid().slice(0,6).toLowerCase()
         }
         if(id === "rec"){
             dispatch(SignupRecuiter(data));

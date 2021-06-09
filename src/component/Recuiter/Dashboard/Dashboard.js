@@ -52,7 +52,7 @@ const DashboardRecuiter = () => {
                     <Typography variant="h6" gutterBottom>
                         Post new jobs/openings
                     </Typography>
-                    <Button variant="contained" color="primary" onClick={()=>setOpen(true)}>Create</Button>
+                    <Button variant="contained" color="secondary" onClick={()=>setOpen(true)}>Create</Button>
                 </Grid>
                 <Grid item xs={12} sm={12}>
                     <Table

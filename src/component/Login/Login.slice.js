@@ -11,6 +11,8 @@ const LoginReducer = createSlice({
     reducers:{
         setLoginFlag : (state,action) => {
             state.loginFlag = true;
+            console.log(action.payload);
+            localStorage.setItem('id',action.payload.id);
             localStorage.setItem('name',action.payload.name);
             localStorage.setItem('email',action.payload.email);
         }
@@ -27,7 +29,8 @@ export const LoginCandidate = (data) => dispatch => {
     dispatch(setSnackBarLoading());
     Axios.post(URL+'login-candidate',data)
     .then(res => {
-        dispatch(setLoginFlag({name:res.data,email:data.email}));
+        console.log(res.data);
+        dispatch(setLoginFlag({name:`${res.data.fname} ${res.data.lname}`,email:data.email,id:res.data.id}));
         dispatch(setSnackBarSuccess("Login Successfull! redirecting to dashboard"));
     })
     .catch(err => {
@@ -39,7 +42,7 @@ export const LoginRecuiter = (data) => dispatch => {
     dispatch(setSnackBarLoading());
     Axios.post(URL+'login-recuiter',data)
     .then(res => {
-        dispatch(setLoginFlag({name:res.data,email:data.email}));
+        dispatch(setLoginFlag({name:res.data,email:data.email,id:res.data.id}));
         dispatch(setSnackBarSuccess("Login Successfull! redirecting to dashboard"));
     })
     .catch(err => {
