@@ -1,7 +1,7 @@
 import React from "react";
 import {Dialog,DialogTitle,DialogContent, AppBar, Toolbar,IconButton, Typography,makeStyles, DialogActions, Button} from "@material-ui/core";
 import CloseIcon from '@material-ui/icons/Close';
-import { PDFDownloadLink, Document, Page } from 'react-pdf';
+import { Document, Page } from 'react-pdf';
 import { useSelector } from "react-redux";
 import GetAppIcon from '@material-ui/icons/GetApp';
 import { selectorDashboard } from "../Recuiter/Dashboard/Dashboard.slice";
