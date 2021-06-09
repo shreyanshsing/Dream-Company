@@ -29,8 +29,8 @@ export const SignupCandidate = (data) => dispatch => {
         dispatch(setSnackBarSuccess("Registration Successfull!"))
     })
     .catch(err => {
-        console.log(err.response.data.sqlMessage)
-        dispatch(setSnackBarError(err.response.data.sqlMessage))
+        console.log(err.response.data)
+        dispatch(setSnackBarError(err.response.data))
     })
 }
 export const SignupRecuiter = (data) => dispatch => {
@@ -41,7 +41,7 @@ export const SignupRecuiter = (data) => dispatch => {
         dispatch(setSnackBarSuccess("Registration Successfull!"))
     })
     .catch(err => {
-        console.log(err.response.data.sqlMessage)
-        dispatch(setSnackBarError(err.response.data.sqlMessage))
+        console.log(err.response.data)
+        dispatch(setSnackBarError(err.response.data))
     })
 }
