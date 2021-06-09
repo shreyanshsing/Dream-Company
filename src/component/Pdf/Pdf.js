@@ -29,6 +29,7 @@ const Pdf = ({open,setOpen}) => {
 
     const  onDocumentLoadSuccess = ({ numPages }) => {
         setNumPages(numPages);
+        setPageNumber(pageNumber+1);
     }
 
     const handleDownload = () => {
