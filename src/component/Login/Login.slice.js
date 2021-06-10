@@ -46,6 +46,7 @@ export const LoginRecuiter = (data) => dispatch => {
         dispatch(setSnackBarSuccess("Login Successfull! redirecting to dashboard"));
     })
     .catch(err => {
+        console.log(err)
         dispatch(setSnackBarError(err.response.data))
     })
 }
