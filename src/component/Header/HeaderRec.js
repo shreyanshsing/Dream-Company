@@ -6,6 +6,8 @@ import {useHistory} from "react-router-dom";
 const style = makeStyles(theme=>({
     appbar:{
         width:'100%',
+        padding:'0.5rem',
+        backgroundImage:'linear-gradient(9deg,#0077b3,#9966ff)'
     },
     toolbar:{
         flexGrow:1,
@@ -28,15 +30,20 @@ const HeaderRec = () => {
         history.push('/');
     }
 
+    const handleProfile = () => {
+        history.push('/user-profile')
+    }
+
     return(
-        <AppBar elevation={3} color="primary" className={classes.appbar}>
+        <AppBar elevation={3} className={classes.appbar}>
             <Toolbar className={classes.toolbar}>
                 <Hidden only={['lg','xl']}>
                     <IconButton>
                         <MenuIcon style={{fill:'white'}}/>
                     </IconButton>
                 </Hidden>
-                <Typography variant="h5" gutterBottom>DC.com</Typography>
+                <Typography variant="h5">DC.com<br/>
+                <Typography variant="caption">Find the right place for yourself.</Typography></Typography>
                 <IconButton onClick={handleOpenMenu}>
                     <Avatar/>
                 </IconButton>
@@ -52,7 +59,7 @@ const HeaderRec = () => {
                     vertical: 'top',
                     horizontal: 'center',
                     }}>
-                    <MenuItem value="profile">
+                    <MenuItem value="profile" onClick={handleProfile}>
                         Manage Profile
                     </MenuItem>
                     <MenuItem value="profile" onClick={handleLogout}>

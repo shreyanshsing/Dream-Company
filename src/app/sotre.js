@@ -6,6 +6,7 @@ import PostjobReducer from "../component/Recuiter/Dialog/PostJob.slice";
 import DashboardReducer from "../component/Recuiter/Dashboard/Dashboard.slice";
 import DashboardCandidate from "../component/Candidate/Dashboard/Dashboar.slice";
 import ApplyJobReducer from "../component/Candidate/ApplyPage/Apply.slice";
+import ModalReducer from "../component/Profile/Modals/Modal.slice";
 
 export default configureStore({
     reducer:{
@@ -15,7 +16,8 @@ export default configureStore({
         postjob : PostjobReducer,
         recuiterDashboard : DashboardReducer,
         candidateDashboard : DashboardCandidate,
-        applyjob : ApplyJobReducer
+        applyjob : ApplyJobReducer,
+        modal:ModalReducer
     },
     middleware : getDefaultMiddleware =>
     getDefaultMiddleware({

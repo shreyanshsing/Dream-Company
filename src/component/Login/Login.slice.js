@@ -42,7 +42,7 @@ export const LoginRecuiter = (data) => dispatch => {
     dispatch(setSnackBarLoading());
     Axios.post(URL+'login-recuiter',data)
     .then(res => {
-        dispatch(setLoginFlag({name:res.data,email:data.email,id:res.data.id}));
+        dispatch(setLoginFlag({name:`${res.data.fname} ${res.data.lname}`,email:data.email,id:res.data.id}));
         dispatch(setSnackBarSuccess("Login Successfull! redirecting to dashboard"));
     })
     .catch(err => {

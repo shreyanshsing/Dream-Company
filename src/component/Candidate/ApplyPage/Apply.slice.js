@@ -40,7 +40,7 @@ export const uploadResume = (data) => dispatch => {
     dispatch(setSnackBarLoading());
     const formData = new FormData();
     formData.append("file",data);
-    formData.append("name",data.name)
+    formData.append("name",localStorage.getItem('id'))
     Axios.post(URL+'upload-resume',formData)
     .then(res=>{
         dispatch(setApplyFlag(res.data));

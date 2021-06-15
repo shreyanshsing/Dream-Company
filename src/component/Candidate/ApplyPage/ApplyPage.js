@@ -44,39 +44,45 @@ const ApplyJob = ({open,setOpen,data}) => {
             case 0:
             return (
                 <Grid container spacing={2}>
-                    <Grid item xs={12} sm={6}>
+                    <Grid item xs={12} sm={6} md={4}>
                         <Typography variant="body1" gutterBottom>
                             Job Title - {data && data.title}
                         </Typography>
                     </Grid>
-                    <Grid item xs={12} sm={6}>
+                    <Grid item xs={12} sm={6} md={4}>
                         <Typography variant="body1" gutterBottom>
                             Employment type - {data && data.type}
                         </Typography>
                     </Grid>
-                    <Grid item xs={12} sm={6}>
+                    <Grid item xs={12} sm={6} md={4}>
+                        <Typography variant="body1" gutterBottom>
+                            Mode of Work - {data && data.mode}
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={4}>
                         <Typography variant="body1" gutterBottom>
                             About company - {data && data.company}
                         </Typography>
                     </Grid>
-                    <Grid item xs={12} sm={6}>
+                    <Grid item xs={12} sm={6} md={4}>
                         <Typography variant="body1" gutterBottom>
-                            Job Description - {data && data.desg}
+                            Expected Pay Range - {data && data.pay.min} to {data && data.pay.max}
                         </Typography>
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <Typography variant="body1" gutterBottom>
-                            Expected Pay Range - {data && JSON.parse(data.pay).min} to {data && JSON.parse(data.pay).max}
+                            <u>Job Description</u> -<br/> {data && data.desg}
                         </Typography>
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <Typography variant="body1" gutterBottom>
-                            Skill's & Experince - {data && data.skills}
+                            <u>Skill's & Experince Required</u> - <br/> {data && data.skills}
                         </Typography>
                     </Grid>
                     <Grid item xs={12} sm={12}>
                         <Typography variant="caption" gutterBottom>
-                            This job post has been posted by {data && data.postedBy}({data && data.desg}).
+                            This job post has been posted by {data && data.postedBy}({data && data.desg}).<br/>
+                            In case of any querry reach out to them at <b>{data && data.email}</b>
                         </Typography>
                     </Grid>
                 </Grid>
@@ -87,8 +93,10 @@ const ApplyJob = ({open,setOpen,data}) => {
                     <Grid item xs={12} sm={12} md={8}>
                         <form onSubmit={handleResumeUpload}>
                             <Typography variant="body1" gutterBottom>Upload Resume</Typography>
-                            <TextField type="file" name="resume" variant="outlined" margin="dense" onChange={handleResume}/>
-                            <Button type="submit" variant="contained" color="secondary">Upload</Button> 
+                            <div style={{display:'flex',alignItems:'center'}}>
+                                <TextField type="file" name="resume" variant="outlined" margin="dense" onChange={handleResume}/>
+                                <Button type="submit" variant="contained" color="secondary">Upload</Button> 
+                            </div>
                         </form>
                     </Grid>
                     <Grid item xs={12} sm={12} md={8}>

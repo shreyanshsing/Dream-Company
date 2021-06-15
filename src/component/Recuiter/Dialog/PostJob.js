@@ -29,6 +29,8 @@ const PostJob = ({open,setOpen}) => {
     const [max,setMax] = useState('');
     const [postedBy,setPostedBy] = useState('');
     const [desg,setDesg] = useState('');
+    const [email,setEmail] = useState('');
+    const [mode,setMode] = useState('');
 
     const handlePostJob = (e) => {
         e.preventDefault();
@@ -40,9 +42,14 @@ const PostJob = ({open,setOpen}) => {
             skills:skill,
             postedBy:postedBy,
             desg:desg,
-            pay:JSON.stringify({min:min,max:max}),
-            key:localStorage.getItem('email'),
+            pay:{
+                "min":min,
+                "max":max
+            },
+            email:email,
+            mode:mode,
             id:nanoid().slice(0,6).toLowerCase(),
+            recuiter_id:localStorage.getItem('id')
         }
         dispatch(postjob(data));
     }
@@ -89,8 +96,8 @@ const PostJob = ({open,setOpen}) => {
                                 required
                             >
                                 <MenuItem value="internship">Internship</MenuItem>
-                                <MenuItem value="temporary">Temporary Employee</MenuItem>
-                                <MenuItem value="permanent">Permanent Employee</MenuItem>
+                                <MenuItem value="temporary">Part-time</MenuItem>
+                                <MenuItem value="permanent">Full-time</MenuItem>
                             </TextField>
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -103,6 +110,22 @@ const PostJob = ({open,setOpen}) => {
                                 onChange={e=>setCname(e.target.value)}
                                 required
                             />
+                        </Grid>
+                        <Grid item xs={6} sm={6}>
+                            <TextField
+                                select
+                                type="text"
+                                variant="outlined"
+                                label="Work Mode"
+                                fullWidth
+                                value={mode}
+                                onChange={e=>setMode(e.target.value)}
+                                required
+                            >
+                                <MenuItem value="REMOTE">Remote</MenuItem>
+                                <MenuItem value="OFFICE">In-Office</MenuItem>
+                                <MenuItem value="LOCATION">In-Location</MenuItem>
+                            </TextField>
                         </Grid>
                         <Grid item xs={12} sm={12}>
                             <TextField
@@ -129,7 +152,7 @@ const PostJob = ({open,setOpen}) => {
                                 onChange={e=>setSkill(e.target.value)}
                             />
                         </Grid>
-                        <Grid item xs={4} sm={3}>
+                        <Grid item xs={4} sm={1}>
                             <Typography compoennt="span" variant="body1" gutterBottom>Pay Range</Typography>
                         </Grid>
                         <Grid item xs={4} sm={3}>
@@ -152,6 +175,7 @@ const PostJob = ({open,setOpen}) => {
                                 onChange={e=>setMax(e.target.value)}
                             />
                         </Grid>
+                        <Grid item sm={5}></Grid>
                         <Grid item xs={6} sm={4}>
                             <TextField
                                 type="text"
@@ -161,6 +185,7 @@ const PostJob = ({open,setOpen}) => {
                                 value={postedBy}
                                 onChange={e=>setPostedBy(e.target.value)}
                                 required
+                                fullWidth
                             />
                         </Grid>
                         <Grid item xs={6} sm={4}>
@@ -172,6 +197,19 @@ const PostJob = ({open,setOpen}) => {
                                 value={desg}
                                 onChange={e=>setDesg(e.target.value)}
                                 required
+                                fullWidth
+                            />
+                        </Grid>
+                        <Grid item xs={6} sm={4}>
+                            <TextField
+                                type="eamil"
+                                variant="outlined"
+                                label="Email to contact with"
+                                placeholder="to be used by candidates in cases of querries."
+                                value={email}
+                                onChange={e=>setEmail(e.target.value)}
+                                required
+                                fullWidth
                             />
                         </Grid>
                         <Grid item xs={12} sm={12}>

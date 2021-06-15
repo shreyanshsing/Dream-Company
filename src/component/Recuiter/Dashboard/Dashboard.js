@@ -37,8 +37,7 @@ const DashboardRecuiter = () => {
     ]
 
     useEffect(()=>{
-        const email = localStorage.getItem('email');
-        dispatch(fetchjob(email))
+        dispatch(fetchjob())
     },[dispatch])
 
     return(

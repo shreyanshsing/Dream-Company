@@ -29,9 +29,9 @@ export const {setJobs,setApplicants,setPdf} = DashboardReducer.actions;
 
 export const selectorDashboard = state => state.recuiterDashboard;
 
-export const fetchjob = (email) => dispatch => {
+export const fetchjob = () => dispatch => {
     dispatch(setSnackBarLoading());
-    Axios.get(URL+'fetch-jobs/'+email)
+    Axios.get(URL+'fetch-jobs/'+localStorage.getItem('id'))
     .then(res => {
         console.log(res)
         dispatch(setJobs(res.data));

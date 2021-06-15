@@ -1,10 +1,30 @@
 import React,{useState} from "react";
-import {Dialog,DialogContent,DialogTitle,Grid,TextField, Button} from "@material-ui/core";
+import {Dialog,DialogContent,DialogTitle,Grid,TextField, Button,makeStyles,useTheme,useMediaQuery,AppBar,Toolbar,IconButton,Typography,Hidden} from "@material-ui/core";
 import {useDispatch} from "react-redux";
 import { SignupCandidate, SignupRecuiter } from "./Signup.slice";
 import { nanoid } from "@reduxjs/toolkit";
+import CloseIcon from '@material-ui/icons/Close';
+
+const styles = makeStyles(theme=>({
+    root:{
+        padding:'1rem',
+        background:'linear-gradient(9deg,#0077b3,#9966ff)',
+        color:'white'
+    },
+    content:{
+        background:'rgba(255,255,255,0.4)',
+        margin:'1rem',
+        marginTop:'0.5rem',
+        borderRadius:'10px',
+        overflow:'hidden',
+        padding:'1rem'
+    }
+}))
 
 const SignupModal = ({open,setOpen,id}) => {
+    const theme = useTheme();
+    const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+    const classes = styles();
     const [fname,setFname] = useState('');
     const [lname,setLname] = useState('');
     const [email,setEmail] = useState('');
@@ -61,16 +81,33 @@ const SignupModal = ({open,setOpen,id}) => {
         <Dialog
             open={open}
             onClose={()=>setOpen(false)}
+            fullScreen={fullScreen}
             fullWidth={true}
             maxWidth="sm"
+            classes={{
+                paper:classes.root
+            }}
         >
             <DialogTitle>
-                Signup!
+                <Hidden only={['md','xl','lg']}>
+                    <AppBar elevation={0} color="transparent">
+                        <Toolbar className={classes.toolbar}>
+                            <IconButton onClick={()=>setOpen(false)}>
+                                <CloseIcon style={{fill:'white'}}/>
+                            </IconButton>
+                            <Typography variant="h6" style={{marginLeft:'10px'}} gutterBottom>Signup</Typography>
+                        </Toolbar>
+                    </AppBar>
+                </Hidden>
+                <Hidden only={['xs','sm']}>
+                    <Typography variant="h6" style={{marginLeft:'10px'}} gutterBottom>Signup</Typography>
+                </Hidden>
             </DialogTitle>
-            <DialogContent>
+            <DialogContent className={classes.content}>
                 <form onSubmit={handleSubmit}>
                     <Grid container spacing={3}>
-                        <Grid item sm={6}>
+                        <Grid item xs={12} sm={12}></Grid>
+                        <Grid item xs={12} sm={6}>
                             <TextField
                                 type="text"
                                 required
@@ -81,7 +118,7 @@ const SignupModal = ({open,setOpen,id}) => {
                                 onChange={e=>setFname(e.target.value)}
                             />
                         </Grid>
-                        <Grid item sm={6}>
+                        <Grid item xs={12} sm={6}>
                             <TextField
                                 type="text"
                                 required
@@ -92,7 +129,7 @@ const SignupModal = ({open,setOpen,id}) => {
                                 onChange={e=>setLname(e.target.value)}
                             />
                         </Grid>
-                        <Grid item sm={6}>
+                        <Grid item xs={12} sm={6}>
                             <TextField
                                 type="email"
                                 required
@@ -103,7 +140,7 @@ const SignupModal = ({open,setOpen,id}) => {
                                 onChange={e=>setEmail(e.target.value)}
                             />
                         </Grid>
-                        <Grid item sm={6}>
+                        <Grid item xs={12} sm={6}>
                             <TextField
                                 type="password"
                                 required
@@ -114,7 +151,7 @@ const SignupModal = ({open,setOpen,id}) => {
                                 onChange={e=>setPassword(e.target.value)}
                             />
                         </Grid>
-                        <Grid item sm={6}>
+                        <Grid item xs={12} sm={6}>
                             <TextField
                                 type="password"
                                 required
@@ -129,7 +166,7 @@ const SignupModal = ({open,setOpen,id}) => {
                             />
                         </Grid>
                         <Grid item xs={12} sm={12} style={{textAlign:'center'}}>
-                        <Button variant="text" type="reset" onClick={clear}>
+                        <Button variant="text" type="reset" color="secondary" onClick={clear}>
                             Clear
                         </Button>
                         &nbsp;  / &nbsp;
